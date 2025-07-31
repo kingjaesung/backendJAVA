@@ -1,0 +1,6 @@
+127.0.0.1 - - [22/Jul/2025:01:41:18 +0900] "GET / HTTP/1.1" 404 808
+0:0:0:0:0:0:0:1 - - [22/Jul/2025:01:41:20 +0900] "GET /firstExample/jsp/jaesungHello.jsp HTTP/1.1" 200 403
+0:0:0:0:0:0:0:1 - - [22/Jul/2025:01:41:20 +0900] "GET /image/star.png HTTP/1.1" 404 826
+0:0:0:0:0:0:0:1 - - [22/Jul/2025:01:41:39 +0900] "GET /firstExample/ajaxExample/krc_data.html HTTP/1.1" 200 4842
+0:0:0:0:0:0:0:1 - - [22/Jul/2025:01:41:39 +0900] "GET /firstExample/ajax/json/krc_data.json HTTP/1.1" 200 315384
+0:0:0:0:0:0:0:1 - - [22/Jul/2025:01:41:39 +0900] "GET /firstExample/image/icon.png HTTP/1.1" 404 843

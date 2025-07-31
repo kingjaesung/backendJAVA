@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 책정보 정의 -->
+
+<books>
+	<book>
+		<title>료의 생각 없는 생각</title>
+		<author>료</author>
+		<price>20000</price>
+	</book>
+	
+	<book>
+		<title>료의 생각 없는 생각</title>
+		<author>료</author>
+		<price>20000</price>
+	</book>
+	
+	<book>
+		<title>료의 생각 없는 생각</title>
+		<author>료</author>
+		<price>20000</price>
+	</book>
+	
+	<book>
+		<title>료의 생각 없는 생각</title>
+		<author>료</author>
+		<price>20000</price>
+	</book>
+</books>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+</head>
+<body>
+	<h1>점수 입력 (0~100 사이로 입력 해주세요)</h1>
+	<form id = "scoreForm" name = "scoreForm">
+		<label>점수:</label>
+		<input type="text" name="scoreInput" id ="scoreInput">
+		<button type="button" id="scoreBtn" name = "scoreBtn">학점 구하기</button>
+		<br>
+		<label>학점:</label>
+		<input type="text" name ="gradeInput" id="gradeInput" readonly="readonly">
+	</form>
+	
+	<script src="../js/jquery-3.7.1.min.js"></script>
+	<script src="../js/score.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+package com.mvc.common.controller;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class DispatcherServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	private HandlerMapping handlerMapping;
+	private ViewResolver viewResolver;
+
+	public void init(ServletConfig config) throws ServletException {
+		handlerMapping = new HandlerMapping();
+		viewResolver = new ViewResolver();
+		viewResolver.setPrefix("/WEB-INF");
+		viewResolver.setSuffix(".jsp");
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		process(request, response);
+
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		process(request, response);
+
+	}
+
+	private void process(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String path = request.getRequestURI(); 
+		// path = /board/getBoardList.do
+		// getRequestURI() 이 서블릿이 받는 URL을 반환하는 메서드
+		// 만약 /board/getBoardList.do 로 들어오면 이 경로로 반환
+		// /board/updateForm.do 로 들어오면 이 경로로 반환
+		// 1 클라이언트의 요청 path 정보를 추출
+		System.out.println(path);
+		
+		
+		
+		Controller ctrl = handlerMapping.getController(path);
+		// 2. handlerMaipping을 통해 path에 해당하는 Controller를 검색한다
+		// getRequestURI() 가 반환해준 URL값을 getController() 에서 
+		// 키값으로 입력하고 벨류값인 서브컨트롤러 객체 반환
+		String viewName = ctrl.execute(request, response);
+		// 3. 검색된 Controller를 실행한다
+
+		String view = null;
+		// 4. ViewResolver를 통해 viewName에 해당하는 화면 검색
+
+		if (!viewName.contains(".do")) {
+			view = viewResolver.getView(viewName);
+			System.out.println(view);
+			// 5. 검색된 화면으로 이동한다.(포워드)
+			try {
+				RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+				dispatcher.forward(request, response);
+			} catch (Exception e) {
+				System.out.println("forward 오류 : " + e);
+			}
+		} else {
+			view = viewName;
+			response.sendRedirect(view);
+		}
+		
+
+	}
+	
+	
+
+}

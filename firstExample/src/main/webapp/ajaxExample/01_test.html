@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <h1 class="title">$.ajax() 함수를 사용한 텍스트 읽기</h1>
+    <div class = "exec">
+    	<input type="button" value="txt파일 가져오기" id="mtbtn">
+    </div>
+    <div class ="exec">
+    	<input type="button" value="txt파일 가져오기" id="mybtn">
+    </div>
+    <div class="console" id="result"></div>
+    
+    <script src = "../js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+    	$("#mybtn").on("click", function() {
+    		$.ajax({
+    			url: "/firstExample/ajax/text/01.txt",
+    			method: 'get',
+    			dataType: 'text'
+    		}).done(function (data){
+    			// 읽어온 XML파일안에 포함된 데이터를 추출
+    			// dataType값이 text일 경우에는 단순히 내용에 대한 문자열이므로, 직접 HTML요ㅕ소에 출력할 수 없다
+    			$("#result").html(data);	
+    		}).fail(function (xhr, textStatus) {
+    			//통신이 실패했을 때 실행되는 함수.
+    			$("#result").html(textStatus + " (HTTP-"+ xhr.status + ")");
+    		})
+
+    		})
+    	
+    		
+    	
+    	
+    
+    </script>
+</body>
+</html>

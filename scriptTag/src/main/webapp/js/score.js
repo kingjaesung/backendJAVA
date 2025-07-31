@@ -1,0 +1,68 @@
+/*const form  = document.getElementById("scoreForm");
+const score = document.getElementById("scoreInput");
+const result = document.getElementById("result");
+
+score.addEventListener("input", function(){
+		score.setCustomValidity("");
+});
+
+form.addEventListener("submit", function(e){
+	e.preventDefault();
+	
+	const pattern = /^(100|[1-9][0-9]?|0)$/;
+	if(!pattern.test(score.value)){
+		score.setCustomValidity("0~100 사이의 문자를 입력 해주세요");
+		score.reportValidity();
+		return;
+	};
+	
+	
+	
+	form.method = "post";
+	form.action ="/scriptTag/score";
+	form.submit();
+	
+	
+	
+});
+*/
+
+
+$("#scoreBtn").on("click", function() {
+	
+	//alert("버튼 이벤트 실행");
+
+	
+	//const scoreInput = $("#scoreInput");
+	//const scoreForm = $("#scoreForm");
+
+
+
+
+	const petton =  /^100[1-9][0-9]?0$/;
+
+	if (!petton.test($("#scoreInput").val())) {
+		alert("점수를 0~100까지 입력해주세요");
+		$("#scoreInput").val("");
+		$("#scoreInput").focus();	
+		$("#gradeInput").val("");	
+		return;
+	};
+	
+	
+	
+	$.ajax({
+		url:"/scriptTag/jsp/score2.jsp",
+		method : "post",
+		data : $("#scoreForm").serialize(), //폼 데이터를 직렬화해서 전송
+		dataType : "text"
+	}).done(function (data) {
+		console.log(data);
+		$("#gradeInput").val(data);
+	}).fail(function(xhr,status) {
+		console.log("AJAX 문제");
+		alert(status + "발생.\n상태: "+ xhr.status);
+	});
+
+});
+

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+</head>
+<body>
+	<h1>계산기</h1>
+	<br>
+	<form name ="calculator" id="calculator">
+		<input type="number" id="num1" name="num1" class = "number">
+		<select name="oprator" id = "oprator">
+		
+			<option value="+">+</option>
+			<option value="-">-</option>
+			<option value="*">*</option>
+			<option value="/">/</option>
+			
+		</select>
+		<input type="number" id = "num2" name="num2" class = "number">
+		<label >=</label>
+		<input type="text" name="result" id="result" readonly>
+		<button type="button" id="calcBtn">계산하기</button>
+		<button type="reset">다시입력</button>
+		
+	</form>
+
+	<script src="../js/jquery-3.7.1.min.js"></script>
+	<script src="../js/calc.js"></script>
+</body>
+</html>

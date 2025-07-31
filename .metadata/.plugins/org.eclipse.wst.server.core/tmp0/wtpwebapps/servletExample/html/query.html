@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link href="../image/star.png" rel="icon" type="image/x-icon" />
+
+
+<style>
+			a > img {
+				width: 200px; height: 200px; 
+				border:1px solid #000; 
+				border-radius:3px;
+			}
+		</style>
+
+</head>
+<!-- HTML = 사용자가 입력한 정보를 버튼/ 이미지를 눌러 서버에 요청 -->
+<!-- servlet = get,post요청을 받아 데이터를 처리하고 결과를 브라우저에 보여줌 -->
+<body>
+	<h1>링크로 서블릿 요청하기</h1>
+	<!-- ? 쿼리스트링으로 서버에 전달할 값(파라미터)을 명시할 수 있다. 
+	이때 전송할 형식: 이름=값. 여러 데이터를 전송 시: 이름=값&이름2=값2 -->
+	<a href="/servletExample/queryget?guestName=둘리&num=101">
+		<img src="../image/image_1.jpg" /></a>
+	<a href="/servletExample/queryget?guestName=또치&num=202">
+		<img src="/servletExample/image/image_2.png"> </a>
+	<hr/>
+	<!-- 이미지 클릭시 브라우저가 /queryget 주소로 이동
+	둘리 101이란 데이터를 URL에 쿼리스트링으로 전달 
+	서버에서는 GET 요청 실행 (서블릿의 doGET() 메서드가 실행 -->
+	
+	<h1>이름과 좋아하는 숫자 전달하기(GET방식)</h1>
+	<form method="get" action="/servletExample/queryget">
+		<input type="text" name="guestName" placeholder="이름을 입력하세요" required>
+		<input type="number" name="num" min="0" placeholder="좋아하는 숫자를 입력하세요" required><br/>
+		<input type="submit" value="요청(GET)">
+	</form>
+	<br/>
+	<hr/>
+	<!-- 사용자가 이름+숫자를 입력하고 버튼을 누르면 
+	또GET방식으로 요청 > URL에 파라미터 자동 붙음
+	예: /queryget?guestName=홍길동&num7 -->
+	
+	<h1>이름과 좋아하는 숫자 전달하기 (POST방식)</h1>
+	<form method="post" action="/servletExample/querypost">
+		<input type="text" name="guestName" placeholder="이름을 입력하세요" required><br/>
+		<input type="number" name="num" min="0" placeholder="좋아하는 숫자 입력" required><br/>
+		<input type="submit" value="요청(POST)">
+	</form>
+	
+	<!-- POST방식이라 URL에는 안 보이고 
+	데이터는 요청 body에 담겨 서버로 전송
+	서브릿에서는 doPost()가 호출됨 -->
+</body>
+</html>
