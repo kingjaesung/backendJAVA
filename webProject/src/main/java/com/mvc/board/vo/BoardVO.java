@@ -2,13 +2,16 @@ package com.mvc.board.vo;
 
 public class BoardVO {
 
-	private int num;
-	private String author;
-	private String title;
-	private String content;
-	private int readcnt;
-	private String writeday;
-	private String passwd;
+	private int num; // 글 번호
+	private String author; // 글 작성자
+	private String title; // 글제목
+	private String content; // 글내용
+	private int readcnt; // 글 조회수
+	private String writeday; // 글 작성일
+	private String passwd; // 비밀번호
+
+	private String search; // 검색 대상
+	private String keyword; // 검색어
 
 	public BoardVO() {
 		super();
@@ -79,6 +82,22 @@ public class BoardVO {
 
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
+	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 
 	@Override

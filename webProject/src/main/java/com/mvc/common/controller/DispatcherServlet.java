@@ -15,19 +15,23 @@ public class DispatcherServlet extends HttpServlet {
 	private HandlerMapping handlerMapping;
 	private ViewResolver viewResolver;
 
+	@Override
 	public void init(ServletConfig config) throws ServletException {
+		System.out.println("DispatcherServlet init");
 		handlerMapping = new HandlerMapping();
 		viewResolver = new ViewResolver();
 		viewResolver.setPrefix("/WEB-INF");
 		viewResolver.setSuffix(".jsp");
 	}
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		process(request, response);
 
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		process(request, response);
@@ -36,19 +40,19 @@ public class DispatcherServlet extends HttpServlet {
 
 	private void process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String path = request.getRequestURI(); 
+		String path = request.getRequestURI();
 		// path = /board/getBoardList.do
 		// getRequestURI() 이 서블릿이 받는 URL을 반환하는 메서드
 		// 만약 /board/getBoardList.do 로 들어오면 이 경로로 반환
 		// /board/updateForm.do 로 들어오면 이 경로로 반환
 		// 1 클라이언트의 요청 path 정보를 추출
-		System.out.println(path);
-		
-		
-		
-		Controller ctrl = handlerMapping.getController("/board/getBoardList.do");
+		System.out.println("path: "+path);
+
+
+
+		Controller ctrl = handlerMapping.getController(path);
 		// 2. handlerMaipping을 통해 path에 해당하는 Controller를 검색한다
-		// getRequestURI() 가 반환해준 URL값을 getController() 에서 
+		// getRequestURI() 가 반환해준 URL값을 getController() 에서
 		// 키값으로 입력하고 벨류값인 서브컨트롤러 객체 반환
 		String viewName = ctrl.execute(request, response);
 		// 3. 검색된 Controller를 실행한다
@@ -58,7 +62,8 @@ public class DispatcherServlet extends HttpServlet {
 
 		if (!viewName.contains(".do")) {
 			view = viewResolver.getView(viewName);
-			System.out.println(view);
+			// .do가 포함되지 않을때
+			System.out.println("view "+view);
 			// 5. 검색된 화면으로 이동한다.(포워드)
 			try {
 				RequestDispatcher dispatcher = request.getRequestDispatcher(view);
@@ -70,10 +75,10 @@ public class DispatcherServlet extends HttpServlet {
 			view = viewName;
 			response.sendRedirect(view);
 		}
-		
+
 
 	}
-	
-	
+
+
 
 }

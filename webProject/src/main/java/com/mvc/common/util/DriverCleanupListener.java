@@ -15,14 +15,14 @@ public class DriverCleanupListener implements ServletContextListener {
 
 
     public DriverCleanupListener() {
-       
+
     }
 
-	
-    public void contexttDestroyed(ServletContextEvent sre)  { 
+
+    public void contexttDestroyed(ServletContextEvent sre)  {
     	//DriverManager,getDrivers()를 통해 등록된 JDBC 드라이버 목록을 가져온다.
     	Enumeration<Driver> drivers = DriverManager.getDrivers();
-    	
+
     	while(drivers.hasMoreElements()) {
     		Driver driver = drivers.nextElement();
     		try {
@@ -36,17 +36,17 @@ public class DriverCleanupListener implements ServletContextListener {
 				e.printStackTrace();
 			}
     	}
-    	
+
     }
 
 	/**
      * @see ServletRequestListener#requestInitialized(ServletRequestEvent)
      */
-  
-    
+
+
     @Override
     public void contextInitialized(ServletContextEvent sce) {
     	//필요 시 초기 작업
     }
-	
+
 }

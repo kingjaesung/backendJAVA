@@ -11,23 +11,23 @@ public class BoardServiceImpl implements BoardService {
 	private static BoardServiceImpl service = null;
 	private BoardDAO dao;
 
-	
+
 
 	private BoardServiceImpl() {
 		super();
 		dao = BoardDAO.getInstance();
 	}
-	
+
 	public static BoardServiceImpl getInstance () {
 		if (service == null) {
 			service = new BoardServiceImpl();
 		}
 		return service;
 	}
-	
+
 	@Override
-	public List<BoardVO> boardList() {
-		List<BoardVO> list = dao.boardList();
+	public List<BoardVO> boardList(BoardVO vO) {
+		List<BoardVO> list = dao.boardList(vO);
 		// 게시판 조회 기능 삽입
 		return list;
 	}
@@ -41,15 +41,15 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void readcntUpdate(BoardVO VO) {
 		dao.readCount(VO);
-		
-	} 
+
+	}
 
 	@Override
 	public BoardVO boardDetail(BoardVO VO) {
 		System.out.println("boardDetail 실행 되나");
-		BoardVO board = dao.boardDetail(VO); 
+		BoardVO board = dao.boardDetail(VO);
 		board.setContent(board.getContent().replaceAll("\n", "<br/ >"));
-		return board; 
+		return board;
 	}
 
 	@Override
@@ -57,9 +57,29 @@ public class BoardServiceImpl implements BoardService {
 		BoardVO board = dao.boardDetail(VO);
 		return board;
 	}
-	
-	
-	
-	
+
+	@Override
+	public int boardUpdate(BoardVO vO) {
+		int result = dao.boardUpdate(vO);
+		return result;
+	}
+
+	@Override
+	public int boardDelete(BoardVO vO) {
+		
+		int result = dao.boardDelete(vO);
+		
+		return result;
+	}
+
+	@Override
+	public int boardPasswdCheck(BoardVO vO) {
+		int result = dao.boardPasswdCheck(vO);
+		return result;
+	}
+
+
+
+
 
 }

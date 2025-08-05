@@ -6,7 +6,7 @@ import com.mvc.board.vo.BoardVO;
 
 public interface BoardService {
 
-	public List<BoardVO> boardList();
+	public List<BoardVO> boardList(BoardVO vO);
 
 	public int boardinsert(BoardVO vO);
 
@@ -15,5 +15,11 @@ public interface BoardService {
 	public BoardVO boardDetail(BoardVO vO);
 
 	public BoardVO updateForm(BoardVO vO);
-	
+
+	public int boardUpdate(BoardVO vO);
+
+	public int boardDelete(BoardVO vO);
+
+	public int boardPasswdCheck(BoardVO vO);
+
 }

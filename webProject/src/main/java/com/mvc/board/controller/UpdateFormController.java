@@ -12,17 +12,17 @@ public class UpdateFormController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		
+
 		String num = request.getParameter("num"); //input 태그에서 name가 num을 명시
-		
+
 		BoardVO VO = new BoardVO();
 		VO.setNum(Integer.parseInt(num));
-		
+
 		BoardService service = BoardServiceImpl.getInstance();
 		BoardVO board = service.updateForm(VO);
-		
+
 		request.setAttribute("updateData", board);
-		
+
 		return "/board/updateForm";
 	}
 
